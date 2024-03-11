@@ -32,6 +32,8 @@ class Window(QtWidgets.QMainWindow):
         for i in range(5):
             self.connect_opered_button(opers[i], [" / ", " - ", " * ", " % ", " + "][i])
 
+        self.ui.pushButton_eq.clicked.connect(self.realize_equal)
+
     def connect_numbed_button(self, button: QPushButton, number: int):
         button.clicked.connect(lambda: self.change_number(number))
 
@@ -40,6 +42,7 @@ class Window(QtWidgets.QMainWindow):
 
     def change_number(self, number):
         print(self.calc_stack.stack)
+
         if (self.calc_stack[-1].isdigit() and self.calc_stack[-1] != "0"):
             self.calc_stack[-1] = self.calc_stack[-1] + str(number)
         elif self.calc_stack[-1] == "0":
@@ -51,23 +54,39 @@ class Window(QtWidgets.QMainWindow):
 
     def realize_oper(self, oper):
         print(self.calc_stack.stack)
+
         if (self.calc_stack[-1].isdigit()):
             if (self.calc_stack.size() > 2):
                 evaluation: list = [self.calc_stack.pop()]
                 evaluation.append(self.calc_stack.pop())
                 evaluation.append(self.calc_stack.pop())
-                print("".join(reversed(evaluation)))
+                # print("".join(reversed(evaluation)))
                 self.calc_stack.push(str(eval("".join(reversed(evaluation)))))
-                print(str(eval("".join(reversed(evaluation)))))
+                # print(str(eval("".join(reversed(evaluation)))))
                 self.ui.labelEnteredExpression.setText(self.calc_stack[-1] + oper)
                 self.ui.labelEnter.setText(self.calc_stack[-1])
             else:
                 self.ui.labelEnteredExpression.setText(self.calc_stack[-1] + oper)
+            self.calc_stack.push(oper)
 
         else:
-            pass
+            prev_oper = self.calc_stack.pop()
+            number: str = self.calc_stack[-1]
+            self.calc_stack.push(oper)
+            self.ui.labelEnteredExpression.setText(number + oper)
 
-        self.calc_stack.push(oper)
+    def realize_equal(self):
+        print(self.calc_stack.stack)
+
+        if (self.calc_stack[-1].isdigit()):
+            evaluation: list = [self.calc_stack.pop()]
+            evaluation.append(self.calc_stack.pop())
+            evaluation.append(self.calc_stack.pop())
+            # print("".join(reversed(evaluation)))
+            self.calc_stack.push(str(eval("".join(reversed(evaluation)))))
+            # print(str(eval("".join(reversed(evaluation)))))
+            self.ui.labelEnteredExpression.setText("".join(reversed(evaluation)) + " =")
+            self.ui.labelEnter.setText(self.calc_stack[-1])
 
 
 if __name__ == "__main__":
