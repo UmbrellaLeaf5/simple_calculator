@@ -2,12 +2,14 @@ from utils import *
 from inspect import currentframe, getframeinfo
 
 
+# тут все функции работают однообразно, но в одну их не засунешь: разные ОДЗ
+
 def turn_to_neg(calc_window):
     # вывод названия функции
-    current_frame = currentframe()
-    if current_frame is not None:
-        print(getframeinfo(current_frame).function)
-    print(calc_window.buffer.stack_)
+    # current_frame = currentframe()
+    # if current_frame is not None:
+    #     print(getframeinfo(current_frame).function)
+    # print(calc_window.buffer.stack_)
 
     try:
         if (is_float(calc_window.buffer[-1])):
@@ -21,10 +23,10 @@ def turn_to_neg(calc_window):
 
 def turn_to_rev(calc_window):
     # вывод названия функции
-    current_frame = currentframe()
-    if current_frame is not None:
-        print(getframeinfo(current_frame).function)
-    print(calc_window.buffer.stack_)
+    # current_frame = currentframe()
+    # if current_frame is not None:
+    #     print(getframeinfo(current_frame).function)
+    # print(calc_window.buffer.stack_)
 
     try:
         if (is_float(calc_window.buffer[-1])):
@@ -44,10 +46,10 @@ def turn_to_rev(calc_window):
 
 def take_square(calc_window):
     # вывод названия функции
-    current_frame = currentframe()
-    if current_frame is not None:
-        print(getframeinfo(current_frame).function)
-    print(calc_window.buffer.stack_)
+    # current_frame = currentframe()
+    # if current_frame is not None:
+    #     print(getframeinfo(current_frame).function)
+    # print(calc_window.buffer.stack_)
 
     try:
         if (is_float(calc_window.buffer[-1])):
@@ -63,10 +65,10 @@ def take_square(calc_window):
 
 def take_square_root(calc_window):
     # вывод названия функции
-    current_frame = currentframe()
-    if current_frame is not None:
-        print(getframeinfo(current_frame).function)
-    print(calc_window.buffer.stack_)
+    # current_frame = currentframe()
+    # if current_frame is not None:
+    #     print(getframeinfo(current_frame).function)
+    # print(calc_window.buffer.stack_)
 
     try:
         if (is_float(calc_window.buffer[-1])):

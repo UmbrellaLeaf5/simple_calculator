@@ -43,6 +43,7 @@ class Stack:
 
         if self.is_empty():
             raise ValueError("Stack is empty")
+
         return self.stack_.pop()
 
     def size(self) -> int:
@@ -85,6 +86,7 @@ class Stack:
 
         if index == len(self.stack_) - 1 or index == -1:
             self.stack_[index] = item
+
         else:
             raise IndexError("Invalid index")
 
@@ -160,9 +162,7 @@ def sci_format(expression: str) -> str:
             str: отформатированное число
         """
 
-        if len(match) > 16:
-            # return remove_trailing_zeros("{:e}".format(float(match)))
-            # return remove_trailing_zeros(match)
+        if len(match) > 15:  # большее кол-во символов плохо помещается
             return "{:e}".format(float(match))
 
         return match
