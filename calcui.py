@@ -33,16 +33,16 @@ class Ui_Window(object):
             20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
 
-        self.labelNumber = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.labelEval = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         font = QtGui.QFont()
         font.setPointSize(36)
         font.setBold(True)
-        self.labelNumber.setFont(font)
-        self.labelNumber.setObjectName("labelNumber")
-        self.labelNumber.setStyleSheet("border: 2px rgb(59, 59, 59);")
-        self.labelNumber.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
-        self.verticalLayout.addWidget(self.labelNumber)
-        self.labelNumber.setText("Ыыы")
+        self.labelEval.setFont(font)
+        self.labelEval.setObjectName("labelEval")
+        self.labelEval.setStyleSheet("border: 2px rgb(59, 59, 59);")
+        self.labelEval.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
+        self.verticalLayout.addWidget(self.labelEval)
+        self.labelEval.setText("Ыыы")
 
         spacerItem2 = QtWidgets.QSpacerItem(
             20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)

@@ -7,12 +7,8 @@ class CalcButton(QtWidgets.QPushButton):
         класс кнопки калькулятора
     """
 
-    _usual_style: str
-    _pressed_style: str
-
     def __init__(self,  name: str,  min_width=100, min_height=75, bolded=True, italic=False,
-                 color: str = "rgb(0, 0, 0);", back_color: str = "rgb(59, 59, 59);",
-                 # цвет мне лень использовать, его и так общие настройки стиля для всего окна меняют
+                 color: str = "rgb(226, 226, 226);", back_color: str = "rgb(59, 59, 59);",
                  hover_color: str = "rgb(50, 50, 50);", pressed_color: str = "rgb(40, 40, 40);",
                  parent=None):
         super().__init__(name, parent)
@@ -22,12 +18,14 @@ class CalcButton(QtWidgets.QPushButton):
         # определение стиля для обычного состояния кнопки
         self._usual_style = """
             QPushButton {
+                color: """ + color + """;
                 background-color:""" + back_color + """;
                 border-radius: 5px;
                 outline: none;
             }
             
             QPushButton:hover {
+                color: """ + color + """;
                 background-color: """ + hover_color + """;
             }
             """
@@ -35,12 +33,14 @@ class CalcButton(QtWidgets.QPushButton):
         # определение стиля для нажатого состояния кнопки
         self._pressed_style = """
             QPushButton {
+                color: """ + color + """;
                 background-color:""" + pressed_color + """;
                 border-radius: 5px;
                 outline: none;
             }
             
             QPushButton:hover {
+                color: """ + color + """;
                 background-color: """ + pressed_color + """;
             }
             """

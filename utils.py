@@ -7,7 +7,7 @@ class Stack:
         класс, представляющий собой стек строк (реализован на листе)
     """
 
-    def __init__(self, items_list: list[str] = []):
+    def __init__(self, items_list: list[str] = [""]):
         self.stack_ = items_list
 
     def is_empty(self) -> bool:
@@ -206,4 +206,4 @@ def calc_format(number: float) -> str:
         str: отформатированная строка
     """
 
-    return remove_trailing_zeros(str(f"{number:.34f}"))
+    return remove_trailing_zeros(str(f"{number:.10f}"))
