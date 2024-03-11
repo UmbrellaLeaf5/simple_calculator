@@ -7,26 +7,47 @@ from custom_button import CalcButton
 class Ui_Form(object):
     def setupUi(self, Window):
         Window.setObjectName("Calculator")
-        Window.setFixedSize(QSize(465, 550))
+        Window.setFixedSize(QSize(465, 555))
         Window.setStyleSheet("color: rgb(226, 226, 226); background-color: rgb(32, 32, 32);")
 
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=Window)
-        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 461, 555))
+        self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 460, 550))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
 
         self.verticalLayout = QtWidgets.QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
 
-        self.lineEdit = QtWidgets.QLineEdit(parent=self.verticalLayoutWidget)
+        self.labelEnteredExpression = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.labelEnteredExpression.setMinimumSize(QtCore.QSize(0, 25))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        self.labelEnteredExpression.setFont(font)
+        self.labelEnteredExpression.setText("")
+        self.labelEnteredExpression.setObjectName("labelEnteredExpression")
+        self.labelEnteredExpression.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.verticalLayout.addWidget(self.labelEnteredExpression)
+        self.labelEnteredExpression.setText("Ыыы")
+
+        spacerItem1 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.verticalLayout.addItem(spacerItem1)
+
+        self.labelEnter = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         font = QtGui.QFont()
         font.setPointSize(36)
         font.setBold(True)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setObjectName("lineEdit")
-        self.lineEdit.setStyleSheet("border: 2px rgb(59, 59, 59);")
-        self.lineEdit.setAlignment(Qt.AlignmentFlag.AlignRight)
-        self.verticalLayout.addWidget(self.lineEdit)
+        self.labelEnter.setFont(font)
+        self.labelEnter.setObjectName("labelEnter")
+        self.labelEnter.setStyleSheet("border: 2px rgb(59, 59, 59);")
+        self.labelEnter.setAlignment(Qt.AlignmentFlag.AlignRight)
+        self.verticalLayout.addWidget(self.labelEnter)
+        self.labelEnter.setText("Ыыы")
+
+        spacerItem2 = QtWidgets.QSpacerItem(
+            20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
+        self.verticalLayout.addItem(spacerItem2)
 
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
@@ -48,7 +69,7 @@ class Ui_Form(object):
 
         self.pushButton_del = CalcButton(
             "pushButton_del", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
-            pressed_color="rgb(40, 40, 40);", italic=True, parent=self.verticalLayoutWidget)
+            pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_C, 0, 2, 1, 1)
         self.gridLayout.addWidget(self.pushButton_del, 0, 3, 1, 1)
 
@@ -132,7 +153,7 @@ class Ui_Form(object):
         self.pushButton_percent.setText(_translate("Window", "%"))
         self.pushButton_CE.setText(_translate("Window", "CE"))
         self.pushButton_C.setText(_translate("Window", "C"))
-        self.pushButton_del.setText(_translate("Window", "DEL"))
+        self.pushButton_del.setText(_translate("Window", "⌫"))
 
         self.pushButton_rev.setText(_translate("Window", "⅟"))
         self.pushButton_sqr.setText(_translate("Window", "x²"))
