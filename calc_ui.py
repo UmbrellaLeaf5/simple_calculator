@@ -1,6 +1,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QGraphicsDropShadowEffect
-from PyQt6.QtCore import QSize
+from PyQt6.QtWidgets import QWidget
+from PyQt6.QtCore import QSize, Qt
 from custom_button import CalcButton
 
 
@@ -24,38 +24,48 @@ class Ui_Form(object):
         font.setBold(True)
         self.lineEdit.setFont(font)
         self.lineEdit.setObjectName("lineEdit")
+        self.lineEdit.setStyleSheet("border: 2px rgb(59, 59, 59);")
+        self.lineEdit.setAlignment(Qt.AlignmentFlag.AlignRight)
         self.verticalLayout.addWidget(self.lineEdit)
 
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
 
         self.pushButton_percent = CalcButton(
-            "pushButton_percent", min_height=50, parent=self.verticalLayoutWidget)
+            "pushButton_percent", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+            pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_percent, 0, 0, 1, 1)
 
         self.pushButton_CE = CalcButton(
-            "pushButton_CE", min_height=50, italic=True, parent=self.verticalLayoutWidget)
+            "pushButton_CE", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+            pressed_color="rgb(40, 40, 40);", italic=True, parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_CE, 0, 1, 1, 1)
 
         self.pushButton_C = CalcButton(
-            "pushButton_C", min_height=50, italic=True, parent=self.verticalLayoutWidget)
+            "pushButton_C", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+            pressed_color="rgb(40, 40, 40);", italic=True, parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_C, 0, 2, 1, 1)
 
         self.pushButton_del = CalcButton(
-            "pushButton_del", min_height=50, italic=True, parent=self.verticalLayoutWidget)
+            "pushButton_del", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+            pressed_color="rgb(40, 40, 40);", italic=True, parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_C, 0, 2, 1, 1)
         self.gridLayout.addWidget(self.pushButton_del, 0, 3, 1, 1)
 
-        self.pushButton_rev = CalcButton("pushButton_rev", parent=self.verticalLayoutWidget)
+        self.pushButton_rev = CalcButton("pushButton_rev", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+                                         pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_rev, 1, 0, 1, 1)
 
-        self.pushButton_sqr = CalcButton("pushButton_sqr", parent=self.verticalLayoutWidget)
+        self.pushButton_sqr = CalcButton("pushButton_sqr", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+                                         pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_sqr, 1, 1, 1, 1)
 
-        self.pushButton_sqrt = CalcButton("pushButton_sqrt", parent=self.verticalLayoutWidget)
+        self.pushButton_sqrt = CalcButton("pushButton_sqrt", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+                                          pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_sqrt, 1, 2, 1, 1)
 
-        self.pushButton_div = CalcButton("pushButton_div", parent=self.verticalLayoutWidget)
+        self.pushButton_div = CalcButton("pushButton_div", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+                                         pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_div, 1, 3, 1, 1)
 
         self.pushButton_1 = CalcButton("pushButton_1", parent=self.verticalLayoutWidget)
@@ -67,7 +77,8 @@ class Ui_Form(object):
         self.pushButton_3 = CalcButton("pushButton_3", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_3, 2, 2, 1, 1)
 
-        self.pushButton_mul = CalcButton("pushButton_mul", parent=self.verticalLayoutWidget)
+        self.pushButton_mul = CalcButton("pushButton_mul", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+                                         pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_mul, 2, 3, 1, 1)
 
         self.pushButton_4 = CalcButton("pushButton_4", parent=self.verticalLayoutWidget)
@@ -79,7 +90,8 @@ class Ui_Form(object):
         self.pushButton_6 = CalcButton("pushButton_6", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_6, 3, 2, 1, 1)
 
-        self.pushButton_minus = CalcButton("pushButton_minus", parent=self.verticalLayoutWidget)
+        self.pushButton_minus = CalcButton("pushButton_minus", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+                                           pressed_color="rgb(40, 40, 40);",  parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_minus, 3, 3, 1, 1)
 
         self.pushButton_7 = CalcButton("pushButton_7", parent=self.verticalLayoutWidget)
@@ -91,7 +103,8 @@ class Ui_Form(object):
         self.pushButton_9 = CalcButton("pushButton_9", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_9, 4, 2, 1, 1)
 
-        self.pushButton_plus = CalcButton("pushButton_plus", parent=self.verticalLayoutWidget)
+        self.pushButton_plus = CalcButton("pushButton_plus", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+                                          pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_plus, 4, 3, 1, 1)
 
         self.pushButton_neg = CalcButton("pushButton_neg", parent=self.verticalLayoutWidget)
@@ -103,7 +116,8 @@ class Ui_Form(object):
         self.pushButton_dot = CalcButton("pushButton_dot", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_dot, 5, 2, 1, 1)
 
-        self.pushButton_eq = CalcButton("pushButton_eq", parent=self.verticalLayoutWidget)
+        self.pushButton_eq = CalcButton("pushButton_eq", color="rgb(97, 186, 97);", hover_color="rgb(90, 170, 90);",
+                                        pressed_color="rgb(83, 154, 83);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_eq, 5, 3, 1, 1)
 
         self.verticalLayout.addLayout(self.gridLayout)
@@ -150,6 +164,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Window = QtWidgets.QWidget()
+    # Window.setWindowFlag(Qt.WindowType.CustomizeWindowHint)
     ui = Ui_Form()
     ui.setupUi(Window)
     Window.show()

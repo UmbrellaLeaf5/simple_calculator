@@ -5,36 +5,52 @@ import sys
 
 
 class CalcButton(QPushButton):
-    def __init__(self,  name: str,  min_width=100, min_height=75, bolded=True, italic=False, parent=None):
+
+    _usual_style: str
+    _pressed_style: str
+
+    def __init__(self,  name: str,  min_width=100, min_height=75, bolded=True, italic=False,
+                 color: str = "rgb(59, 59, 59);", hover_color: str = "rgb(50, 50, 50);", pressed_color: str = "rgb(40, 40, 40);",
+                 parent=None):
         super().__init__(name, parent)
         self.setMinimumSize(QtCore.QSize(min_width, min_height))
-        # self.setCheckable(True)
+
+        self._usual_style = """
+            QPushButton {
+                background-color:""" + color + """;
+                border-radius: 5px;
+                outline: none;
+            }
+            
+            QPushButton:hover {
+                background-color: """ + hover_color + """;
+            }
+            """
+
+        self._pressed_style = """
+            QPushButton {
+                background-color:""" + pressed_color + """;
+                border-radius: 5px;
+                outline: none;
+            }
+            
+            QPushButton:hover {
+                background-color: """ + pressed_color + """;
+            }
+            """
+        self.setStyleSheet(self._usual_style)
 
         font = QtGui.QFont()
-        font.setPointSize(24)
+        font.setPointSize(16)
         font.setBold(bolded)
         font.setItalic(italic)
         self.setFont(font)
 
         self.setObjectName(name)
 
-        # self.setStyleSheet(
-        #     "background-color: rgb(59, 59, 59); border-radius: 5px; outline: none;")
-        self.setStyleSheet("""
-            QPushButton {
-                background-color: rgb(59, 59, 59);
-                border-radius: 5px;
-                outline: none;
-            }
-            
-            QPushButton:hover {
-                background-color: rgb(50, 50, 50);
-            }
-        """)
-
         # Создание тени
         shadow = QGraphicsDropShadowEffect()
-        shadow.setBlurRadius(4)
+        shadow.setBlurRadius(2)
         shadow.setColor(QColor(0, 0, 0, 100))
         shadow.setOffset(2, 2)
 
@@ -43,31 +59,11 @@ class CalcButton(QPushButton):
 
     def mousePressEvent(self, event):
         super().mousePressEvent(event)
-        self.setStyleSheet("""
-            QPushButton {
-                background-color: rgb(40, 40, 40);
-                border-radius: 5px;
-                outline: none;
-            }
-            
-            QPushButton:hover {
-                background-color: rgb(40, 40, 40);
-            }
-        """)
+        self.setStyleSheet(self._pressed_style)
 
     def mouseReleaseEvent(self, event):
         super().mouseReleaseEvent(event)
-        self.setStyleSheet("""
-            QPushButton {
-                background-color: rgb(59, 59, 59);
-                border-radius: 5px;
-                outline: none;
-            }
-            
-            QPushButton:hover {
-                background-color: rgb(50, 50, 50);
-            }
-        """)
+        self.setStyleSheet(self._usual_style)
 
 
 if __name__ == "__main__":
