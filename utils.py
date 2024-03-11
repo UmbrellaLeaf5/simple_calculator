@@ -107,7 +107,7 @@ class Stack:
             raise IndexError("Invalid index")
 
 
-def is_float(string):
+def is_float(string: str) -> bool:
     try:
         float(string)
         return True
@@ -174,10 +174,10 @@ def sci_format(expression: str) -> str:
     return converted_expression
 
 
-def calc_format(text: str) -> str:
+def view_output_format(text: str) -> str:
     """
     MEANS:
-        функция, которая приводит строку в формат для калькулятора
+        функция, которая приводит строку в формат для пользователя
 
     ARGS:
         text (str): строка
@@ -192,3 +192,18 @@ def calc_format(text: str) -> str:
     res = res.replace(".", ",")
 
     return res
+
+
+def calc_format(number: float) -> str:
+    """
+    MEANS:
+        функция, которая приводит число в формат для представления в стеке
+
+    ARGS:
+        number (float): число
+
+    RETURNS:
+        str: отформатированная строка
+    """
+
+    return remove_trailing_zeros(str(f"{number:.34f}"))
