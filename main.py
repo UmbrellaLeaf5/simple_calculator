@@ -30,7 +30,7 @@ class Window(QtWidgets.QMainWindow):
                  self.ui.pushButton_mul, self.ui.pushButton_percent, self.ui.pushButton_plus]
 
         for i in range(5):
-            self.connect_opered_button(opers[i], ["/", "-", "*", "%", "+"][i])
+            self.connect_opered_button(opers[i], [" / ", " - ", " * ", " % ", " + "][i])
 
     def connect_numbed_button(self, button: QPushButton, number: int):
         button.clicked.connect(lambda: self.change_number(number))
@@ -39,20 +39,26 @@ class Window(QtWidgets.QMainWindow):
         button.clicked.connect(lambda: self.realize_oper(oper))
 
     def change_number(self, number):
+        print(self.calc_stack.stack)
         if (self.calc_stack[-1].isdigit() and self.calc_stack[-1] != "0"):
             self.calc_stack[-1] = self.calc_stack[-1] + str(number)
+        elif self.calc_stack[-1] == "0":
+            self.calc_stack[-1] = str(number)
         else:
             self.calc_stack.push(str(number))
 
         self.ui.labelEnter.setText(self.calc_stack[-1])
 
     def realize_oper(self, oper):
+        print(self.calc_stack.stack)
         if (self.calc_stack[-1].isdigit()):
             if (self.calc_stack.size() > 2):
-                evaluation: str = self.calc_stack.pop()
-                evaluation += self.calc_stack.pop()
-                evaluation += self.calc_stack.pop()
-                self.calc_stack.push(str(eval(evaluation)))
+                evaluation: list = [self.calc_stack.pop()]
+                evaluation.append(self.calc_stack.pop())
+                evaluation.append(self.calc_stack.pop())
+                print("".join(reversed(evaluation)))
+                self.calc_stack.push(str(eval("".join(reversed(evaluation)))))
+                print(str(eval("".join(reversed(evaluation)))))
                 self.ui.labelEnteredExpression.setText(self.calc_stack[-1] + oper)
                 self.ui.labelEnter.setText(self.calc_stack[-1])
             else:
@@ -61,7 +67,7 @@ class Window(QtWidgets.QMainWindow):
         else:
             pass
 
-        self.calc_stack.push(" + ")
+        self.calc_stack.push(oper)
 
 
 if __name__ == "__main__":
