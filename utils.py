@@ -22,6 +22,9 @@ class Stack:
     def clear(self):
         self.stack = []
 
+    def math_reset(self):
+        self.stack = ["0"]
+
     def __setitem__(self, index, item):
         if index == len(self.stack) - 1 or index == -1:
             self.stack[index] = item
@@ -43,11 +46,17 @@ def is_float(string):
         return False
 
 
+def remove_trailing_zeros(number: str):
+    if "." in number:
+        number = number.rstrip("0").rstrip(".")
+    return number
+
+
 def sci_round(expression: str):
     def convert(match):
-        if len(match) > 15:
-            return "{:e}".format(float(match))
-        return match
+        if len(match) > 16:
+            return remove_trailing_zeros("{:e}".format(float(match)))
+        return remove_trailing_zeros(match)
 
     pattern = r"\b[+-]?\d+\.\d+(?:[eE][+-]?\d+)?\b|\b\d+(?:[eE][+-]?\d+)?\b"
     converted_expression = re.sub(pattern, lambda match: convert(match.group()), expression)
