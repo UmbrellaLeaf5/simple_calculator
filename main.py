@@ -34,6 +34,10 @@ class Window(QtWidgets.QMainWindow):
 
         self.ui.pushButton_eq.clicked.connect(self.realize_equal)
 
+        self.ui.pushButton_C.clicked.connect(self.realize_clear)
+        self.ui.pushButton_CE.clicked.connect(self.realize_clear_eval)
+        self.ui.pushButton_del.clicked.connect(self.realize_del)
+
     def connect_numbed_button(self, button: QPushButton, number: int):
         button.clicked.connect(lambda: self.change_number(number))
 
@@ -78,7 +82,7 @@ class Window(QtWidgets.QMainWindow):
     def realize_equal(self):
         print(self.calc_stack.stack)
 
-        if (self.calc_stack[-1].isdigit()):
+        if (self.calc_stack[-1].isdigit() and self.calc_stack.size() > 1):
             evaluation: list = [self.calc_stack.pop()]
             evaluation.append(self.calc_stack.pop())
             evaluation.append(self.calc_stack.pop())
@@ -86,6 +90,44 @@ class Window(QtWidgets.QMainWindow):
             self.calc_stack.push(str(eval("".join(reversed(evaluation)))))
             # print(str(eval("".join(reversed(evaluation)))))
             self.ui.labelEnteredExpression.setText("".join(reversed(evaluation)) + " =")
+            self.ui.labelEnter.setText(self.calc_stack[-1])
+        elif (self.calc_stack.size() > 1):
+            evaluation: list = [self.calc_stack.pop()]
+            number: str = self.calc_stack.pop()
+            evaluation.append(number)
+            evaluation = [number] + evaluation
+            # print("".join(reversed(evaluation)))
+            self.calc_stack.push(str(eval("".join(reversed(evaluation)))))
+            # print(str(eval("".join(reversed(evaluation)))))
+            self.ui.labelEnteredExpression.setText("".join(reversed(evaluation)) + " =")
+            self.ui.labelEnter.setText(self.calc_stack[-1])
+        else:
+            self.ui.labelEnteredExpression.setText(self.calc_stack[-1] + " =")
+
+    def realize_clear(self):
+        print(self.calc_stack.stack)
+
+        self.calc_stack.clear()
+        self.calc_stack.push("0")
+        self.ui.labelEnteredExpression.setText("")
+        self.ui.labelEnter.setText("0")
+
+    def realize_clear_eval(self):
+        print(self.calc_stack.stack)
+
+        if (self.calc_stack[-1].isdigit()):
+            self.calc_stack[-1] = "0"
+        else:
+            self.calc_stack.push("0")
+
+        self.ui.labelEnter.setText("0")
+
+    def realize_del(self):
+        print(self.calc_stack.stack)
+        if (self.calc_stack[-1].isdigit()):
+            self.calc_stack[-1] = self.calc_stack[-1][0:-1]
+            if self.calc_stack[-1] == "":
+                self.calc_stack[-1] = 0
             self.ui.labelEnter.setText(self.calc_stack[-1])
 
 
