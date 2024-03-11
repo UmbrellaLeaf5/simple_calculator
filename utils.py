@@ -1,3 +1,6 @@
+import re
+
+
 class Stack:
     def __init__(self, items_list: list[str] = []):
         self.stack = items_list
@@ -30,3 +33,23 @@ class Stack:
             return self.stack[index]
         else:
             raise IndexError("Invalid index")
+
+
+def is_float(string):
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
+
+
+def sci_round(expression: str):
+    def convert(match):
+        if len(match) > 15:
+            return "{:e}".format(float(match))
+        return match
+
+    pattern = r"\b[+-]?\d+\.\d+(?:[eE][+-]?\d+)?\b|\b\d+(?:[eE][+-]?\d+)?\b"
+    converted_expression = re.sub(pattern, lambda match: convert(match.group()), expression)
+
+    return converted_expression
