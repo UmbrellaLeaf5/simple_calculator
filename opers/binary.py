@@ -5,10 +5,10 @@ from utils import *
 
 def do_bin_oper(calc_window, oper: str):
     # вывод названия функции
-    current_frame = currentframe()
-    if current_frame is not None:
-        print(getframeinfo(current_frame).function)
-    print(calc_window.buffer.stack_)
+    # current_frame = currentframe()
+    # if current_frame is not None:
+    #     print(getframeinfo(current_frame).function)
+    # print(calc_window.buffer.stack_)
 
     try:
         if (is_float(calc_window.buffer[-1])):
@@ -33,12 +33,15 @@ def do_bin_oper(calc_window, oper: str):
                     calc_window.buffer.math_reset()
 
             else:
+                # иначе просто дописываем
                 calc_window.ui.labelExpression.setText(
                     view_output_format(calc_window.buffer[-1] + oper))
 
+            # но в любом случае добавляем в буфер операцию, чтобы потом отработал eval
             calc_window.buffer.push(oper)
 
         else:
+            # если это не число, то просто меняем операцию
             calc_window.buffer.pop()
             number: str = calc_window.buffer[-1]
             calc_window.buffer.push(oper)

@@ -1,6 +1,9 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
+
 from button import CalcButton
 
+
+# сам редактировал, создав свой класс :)
 
 class Ui_Window(object):
     def setupUi(self, Window: QtWidgets.QWidget):
