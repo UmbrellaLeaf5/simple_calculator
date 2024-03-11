@@ -1,14 +1,13 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QWidget
-from PyQt6.QtCore import QSize, Qt
-from custom_button import CalcButton
+from button import CalcButton
 
 
 class Ui_Window(object):
-    def setupUi(self, Window):
+    def setupUi(self, Window: QtWidgets.QWidget):
         Window.setObjectName("Calculator")
-        Window.setFixedSize(QSize(465, 555))
-        Window.setStyleSheet("color: rgb(226, 226, 226); background-color: rgb(32, 32, 32);")
+        Window.setFixedSize(QtCore.QSize(465, 555))
+        Window.setStyleSheet(
+            "color: rgb(226, 226, 226); background-color: rgb(32, 32, 32);")
 
         self.verticalLayoutWidget = QtWidgets.QWidget(parent=Window)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 460, 550))
@@ -18,32 +17,32 @@ class Ui_Window(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
 
-        self.labelEnteredExpression = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
-        self.labelEnteredExpression.setMinimumSize(QtCore.QSize(0, 25))
+        self.labelExpression = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.labelExpression.setMinimumSize(QtCore.QSize(0, 25))
         font = QtGui.QFont()
         font.setPointSize(12)
         font.setBold(True)
-        self.labelEnteredExpression.setFont(font)
-        self.labelEnteredExpression.setText("")
-        self.labelEnteredExpression.setObjectName("labelEnteredExpression")
-        self.labelEnteredExpression.setAlignment(Qt.AlignmentFlag.AlignRight)
-        self.verticalLayout.addWidget(self.labelEnteredExpression)
-        self.labelEnteredExpression.setText("Ыыы")
+        self.labelExpression.setFont(font)
+        self.labelExpression.setText("")
+        self.labelExpression.setObjectName("labelExpression")
+        self.labelExpression.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
+        self.verticalLayout.addWidget(self.labelExpression)
+        self.labelExpression.setText("Ыыы")
 
         spacerItem1 = QtWidgets.QSpacerItem(
             20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
         self.verticalLayout.addItem(spacerItem1)
 
-        self.labelEnter = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.labelNumber = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
         font = QtGui.QFont()
         font.setPointSize(36)
         font.setBold(True)
-        self.labelEnter.setFont(font)
-        self.labelEnter.setObjectName("labelEnter")
-        self.labelEnter.setStyleSheet("border: 2px rgb(59, 59, 59);")
-        self.labelEnter.setAlignment(Qt.AlignmentFlag.AlignRight)
-        self.verticalLayout.addWidget(self.labelEnter)
-        self.labelEnter.setText("Ыыы")
+        self.labelNumber.setFont(font)
+        self.labelNumber.setObjectName("labelNumber")
+        self.labelNumber.setStyleSheet("border: 2px rgb(59, 59, 59);")
+        self.labelNumber.setAlignment(QtCore.Qt.AlignmentFlag.AlignRight)
+        self.verticalLayout.addWidget(self.labelNumber)
+        self.labelNumber.setText("Ыыы")
 
         spacerItem2 = QtWidgets.QSpacerItem(
             20, 40, QtWidgets.QSizePolicy.Policy.Minimum, QtWidgets.QSizePolicy.Policy.Expanding)
@@ -53,39 +52,39 @@ class Ui_Window(object):
         self.gridLayout.setObjectName("gridLayout")
 
         self.pushButton_percent = CalcButton(
-            "pushButton_percent", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+            "pushButton_percent", min_height=50, back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
             pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_percent, 0, 0, 1, 1)
 
         self.pushButton_CE = CalcButton(
-            "pushButton_CE", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+            "pushButton_CE", min_height=50, back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
             pressed_color="rgb(40, 40, 40);", italic=True, parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_CE, 0, 1, 1, 1)
 
         self.pushButton_C = CalcButton(
-            "pushButton_C", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+            "pushButton_C", min_height=50, back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
             pressed_color="rgb(40, 40, 40);", italic=True, parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_C, 0, 2, 1, 1)
 
         self.pushButton_del = CalcButton(
-            "pushButton_del", min_height=50, color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+            "pushButton_del", min_height=50, back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
             pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_C, 0, 2, 1, 1)
         self.gridLayout.addWidget(self.pushButton_del, 0, 3, 1, 1)
 
-        self.pushButton_rev = CalcButton("pushButton_rev", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+        self.pushButton_rev = CalcButton("pushButton_rev", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                          pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_rev, 1, 0, 1, 1)
 
-        self.pushButton_sqr = CalcButton("pushButton_sqr", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+        self.pushButton_sqr = CalcButton("pushButton_sqr", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                          pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_sqr, 1, 1, 1, 1)
 
-        self.pushButton_sqrt = CalcButton("pushButton_sqrt", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+        self.pushButton_sqrt = CalcButton("pushButton_sqrt", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                           pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_sqrt, 1, 2, 1, 1)
 
-        self.pushButton_div = CalcButton("pushButton_div", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+        self.pushButton_div = CalcButton("pushButton_div", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                          pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_div, 1, 3, 1, 1)
 
@@ -98,7 +97,7 @@ class Ui_Window(object):
         self.pushButton_3 = CalcButton("pushButton_3", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_3, 2, 2, 1, 1)
 
-        self.pushButton_mul = CalcButton("pushButton_mul", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+        self.pushButton_mul = CalcButton("pushButton_mul", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                          pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_mul, 2, 3, 1, 1)
 
@@ -111,7 +110,7 @@ class Ui_Window(object):
         self.pushButton_6 = CalcButton("pushButton_6", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_6, 3, 2, 1, 1)
 
-        self.pushButton_minus = CalcButton("pushButton_minus", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+        self.pushButton_minus = CalcButton("pushButton_minus", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                            pressed_color="rgb(40, 40, 40);",  parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_minus, 3, 3, 1, 1)
 
@@ -124,7 +123,7 @@ class Ui_Window(object):
         self.pushButton_9 = CalcButton("pushButton_9", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_9, 4, 2, 1, 1)
 
-        self.pushButton_plus = CalcButton("pushButton_plus", color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
+        self.pushButton_plus = CalcButton("pushButton_plus", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                           pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_plus, 4, 3, 1, 1)
 
@@ -137,7 +136,7 @@ class Ui_Window(object):
         self.pushButton_dot = CalcButton("pushButton_dot", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_dot, 5, 2, 1, 1)
 
-        self.pushButton_eq = CalcButton("pushButton_eq", color="rgb(97, 186, 97);", hover_color="rgb(90, 170, 90);",
+        self.pushButton_eq = CalcButton("pushButton_eq", back_color="rgb(97, 186, 97);", hover_color="rgb(90, 170, 90);",
                                         pressed_color="rgb(83, 154, 83);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_eq, 5, 3, 1, 1)
 
@@ -146,7 +145,7 @@ class Ui_Window(object):
         self.retranslateUi(Window)
         QtCore.QMetaObject.connectSlotsByName(Window)
 
-    def retranslateUi(self, Window):
+    def retranslateUi(self, Window: QtWidgets.QWidget):
         _translate = QtCore.QCoreApplication.translate
         Window.setWindowTitle(_translate("Window", "Calculator"))
 
@@ -181,12 +180,16 @@ class Ui_Window(object):
         self.pushButton_eq.setText(_translate("Window", "="))
 
 
+# на случай, если хотим глянуть, как это выглядит, прямо отсюда
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
+
     Window = QtWidgets.QWidget()
-    # Window.setWindowFlag(Qt.WindowType.CustomizeWindowHint)
+
     ui = Ui_Window()
     ui.setupUi(Window)
+
     Window.show()
+
     sys.exit(app.exec())
