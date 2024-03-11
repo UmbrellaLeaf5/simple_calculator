@@ -16,6 +16,9 @@ class Stack:
     def size(self):
         return len(self.stack)
 
+    def clear(self):
+        self.stack = []
+
     def __setitem__(self, index, item):
         if index == len(self.stack) - 1 or index == -1:
             self.stack[index] = item
