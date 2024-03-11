@@ -1,8 +1,9 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtWidgets import QWidget
+from PyQt6.QtWidgets import QWidget, QPushButton
 from PyQt6.QtCore import QSize, Qt
 from custom_button import CalcButton
 from calc import Ui_Window
+from utils import Stack
 
 
 class Window(QtWidgets.QMainWindow):
@@ -12,12 +13,10 @@ class Window(QtWidgets.QMainWindow):
         self.ui = Ui_Window()
         self.ui.setupUi(self)
 
-        self.ui.labelEnter.setText('')
+        self.ui.labelEnter.setText('0')
+        self.ui.labelEnteredExpression.setText('')
 
-        self.cur = 0
-        self.next = 0
-
-        self.ops = ['+', '-', '*', '/', '%']
+        self.calc_stack = Stack(["0"])
 
         numbers = [self.ui.pushButton_0, self.ui.pushButton_1, self.ui.pushButton_2,
                    self.ui.pushButton_3, self.ui.pushButton_4, self.ui.pushButton_5,
@@ -25,46 +24,44 @@ class Window(QtWidgets.QMainWindow):
                    self.ui.pushButton_9]
 
         for i in range(10):
-            self.connect_button(numbers[i], i)
+            self.connect_numbed_button(numbers[i], i)
 
-        self.ui.pushButton_plus.clicked.connect(self.sum)
-        self.ui.pushButton_eq.clicked.connect(self.eq)
+        opers = [self.ui.pushButton_div, self.ui.pushButton_minus,
+                 self.ui.pushButton_mul, self.ui.pushButton_percent, self.ui.pushButton_plus]
 
-    def eq(self):
-        text = self.ui.labelEnter.getText()
+        for i in range(5):
+            self.connect_opered_button(opers[i], ["/", "-", "*", "%", "+"][i])
 
-        self.cur = eval(text)
-        self.next = 0
-
-        self.ui.labelEnter.setText(str(self.cur))
-
-    def sum(self):
-        self.cur = self.next
-        self.next = 0
-
-        text = self.ui.labelEnter.displayText()
-
-        if text[-1] not in self.ops:
-            text += '+'
-            self.ui.labelEnter.setText(text)
-
-    def connect_button(self, button, number):
+    def connect_numbed_button(self, button: QPushButton, number: int):
         button.clicked.connect(lambda: self.change_number(number))
 
+    def connect_opered_button(self, button: QPushButton, oper: str):
+        button.clicked.connect(lambda: self.realize_oper(oper))
+
     def change_number(self, number):
-        text = self.ui.labelEnter.displayText()
-        last_num = self.next
+        if (self.calc_stack[-1].isdigit() and self.calc_stack[-1] != "0"):
+            self.calc_stack[-1] = self.calc_stack[-1] + str(number)
+        else:
+            self.calc_stack.push(str(number))
 
-        self.next *= 10
-        self.next += number
+        self.ui.labelEnter.setText(self.calc_stack[-1])
 
-        new_text = text + str(self.next)[-1]
-
-        if self.next != last_num:
-            if text == '0':
-                self.ui.labelEnter.setText(str(self.next)[-1])
+    def realize_oper(self, oper):
+        if (self.calc_stack[-1].isdigit()):
+            if (self.calc_stack.size() > 2):
+                evaluation: str = self.calc_stack.pop()
+                evaluation += self.calc_stack.pop()
+                evaluation += self.calc_stack.pop()
+                self.calc_stack.push(str(eval(evaluation)))
+                self.ui.labelEnteredExpression.setText(self.calc_stack[-1] + oper)
+                self.ui.labelEnter.setText(self.calc_stack[-1])
             else:
-                self.ui.labelEnter.setText(new_text)
+                self.ui.labelEnteredExpression.setText(self.calc_stack[-1] + oper)
+
+        else:
+            pass
+
+        self.calc_stack.push(" + ")
 
 
 if __name__ == "__main__":
