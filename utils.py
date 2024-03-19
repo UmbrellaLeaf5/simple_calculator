@@ -3,7 +3,7 @@ from re import sub
 
 class Stack:
     """
-    MEANS:
+    Means:
         класс, представляющий собой стек строк (реализован на листе)
     """
 
@@ -12,7 +12,7 @@ class Stack:
 
     def is_empty(self) -> bool:
         """
-        RETURNS:
+        Returns:
             bool: пуст ли стек
         """
 
@@ -20,10 +20,10 @@ class Stack:
 
     def push(self, item: str):
         """
-        DOES: 
+        Does: 
             добавляет элемент в стек
 
-        ARGS:
+        Args:
             item (str): добавляемый элемент
         """
 
@@ -31,13 +31,13 @@ class Stack:
 
     def pop(self) -> str:
         """
-        MEANS: 
+        Means: 
             функция, которая удаляет последний элемент из стека
 
         RAISES:
             ValueError: в том случае, если стек пуст
 
-        RETURNS:
+        Returns:
             str: удаляемый элемент
         """
 
@@ -48,7 +48,7 @@ class Stack:
 
     def size(self) -> int:
         """
-        RETURNS:
+        Returns:
             int: размер стека
         """
 
@@ -56,7 +56,7 @@ class Stack:
 
     def clear(self):
         """
-        DOES: 
+        Does: 
             удаляет все элементы из стека
         """
 
@@ -64,7 +64,7 @@ class Stack:
 
     def math_reset(self):
         """
-        DOES: 
+        Does: 
             удаляет все элементы из стека, оставляя "0"
         """
 
@@ -72,11 +72,11 @@ class Stack:
 
     def __setitem__(self, index: int, item: str):
         """
-        DOES:
+        Does:
             меняет элемент по определенному индексу
             (обращаться можно только к последнему)
 
-        ARGS:
+        Args:
             index (int): индекс
             item (str): изменяемый элемент
 
@@ -92,13 +92,13 @@ class Stack:
 
     def __getitem__(self, index: int) -> str:
         """
-        ARGS:
+        Args:
             index (int): индекс (обращаться можно только к последнему)
 
         RAISES:
             IndexError: в том случае, если индекс не последний
 
-        RETURNS:
+        Returns:
             str: элемент по индексу
         """
 
@@ -120,13 +120,13 @@ def is_float(string: str) -> bool:
 
 def remove_trailing_zeros(number: str) -> str:
     """
-    MEANS:
+    Means:
         функция, которая удаляет незначащие нули из числа, представленного строкой
 
-    ARGS:
+    Args:
         number (str): изменяемое число
 
-    RETURNS:
+    Returns:
         str: обрезанное число
     """
 
@@ -138,27 +138,27 @@ def remove_trailing_zeros(number: str) -> str:
 
 def sci_format(expression: str) -> str:
     """
-    MEANS:
+    Means:
         функция, которая переводит числа внутри выражения в научный стиль
         (меняет на экспоненциальную запись, если числа длиннее 16 символов)
 
-    ARGS:
+    Args:
         expression (str): математическое выражение
 
-    RETURNS:
+    Returns:
         str: отформатированное математическое выражение
     """
 
     def convert(match: str) -> str:
         """
-        MEANS:
+        Means:
             функция, которая 1 число в научный стиль
             (меняет на экспоненциальную запись, если число длиннее 16 символов)
 
-        ARGS:
+        Args:
             match (str): изменяемое число
 
-        RETURNS:
+        Returns:
             str: отформатированное число
         """
 
@@ -169,20 +169,21 @@ def sci_format(expression: str) -> str:
 
     # я без понятия, как работают регулярные выражения, но они работают :)
     pattern = r"\b[+-]?\d+\.\d+(?:[eE][+-]?\d+)?\b|\b\d+(?:[eE][+-]?\d+)?\b"
-    converted_expression = sub(pattern, lambda match: convert(match.group()), expression)
+    converted_expression = sub(
+        pattern, lambda match: convert(match.group()), expression)
 
     return converted_expression
 
 
 def view_output_format(text: str) -> str:
     """
-    MEANS:
+    Means:
         функция, которая приводит строку в формат для пользователя
 
-    ARGS:
+    Args:
         text (str): строка
 
-    RETURNS:
+    Returns:
         str: отформатированная строка
     """
 
@@ -196,13 +197,13 @@ def view_output_format(text: str) -> str:
 
 def calc_format(number: float) -> str:
     """
-    MEANS:
+    Means:
         функция, которая приводит число в формат для представления в стеке
 
-    ARGS:
+    Args:
         number (float): число
 
-    RETURNS:
+    Returns:
         str: отформатированная строка
     """
 
