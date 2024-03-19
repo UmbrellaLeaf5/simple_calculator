@@ -69,10 +69,10 @@ class Window(QtWidgets.QMainWindow):
 
     def connect_digit_button(self, button: QtWidgets.QPushButton, number: int):
         """
-        DOES:
+        Does:
             коннектит кнопку, обозначающую цифру, к соотв. функции
 
-        ARGS:
+        Args:
             button (QPushButton): кнопка, которую коннектят
             number (int): цифра
         """
@@ -81,10 +81,10 @@ class Window(QtWidgets.QMainWindow):
 
     def connect_bin_oper_button(self, button: QtWidgets.QPushButton, oper: str):
         """
-        DOES:
+        Does:
             коннектит кнопку, обозначающую бинарную операцию, к соотв. функции
 
-        ARGS:
+        Args:
             button (QPushButton): кнопка, которую коннектят
             oper (str): операция
         """

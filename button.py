@@ -3,7 +3,7 @@ from PyQt6 import QtCore, QtGui, QtWidgets
 
 class CalcButton(QtWidgets.QPushButton):
     """
-    MEANS:
+    Means:
         класс кнопки калькулятора
     """
 
@@ -65,10 +65,10 @@ class CalcButton(QtWidgets.QPushButton):
 
     def mousePressEvent(self, event):
         """
-        DOES:
+        Does:
             меняет цвет кнопки при клике мышкой
 
-        ARGS:
+        Args:
             event (_type_): событие
         """
 
@@ -77,10 +77,10 @@ class CalcButton(QtWidgets.QPushButton):
 
     def mouseReleaseEvent(self, event):
         """
-        DOES:
+        Does:
             меняет цвет кнопки после клика мышкой
 
-        ARGS:
+        Args:
             event (_type_): событие
         """
 
