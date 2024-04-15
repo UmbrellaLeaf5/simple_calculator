@@ -24,7 +24,8 @@ def equalize(calc_window):
 
                 try:
                     # разворот необходим, так как из стека мы вытаскиваем в обратном порядке
-                    calc_window.buffer.push(calc_format(eval("".join(reversed(evaluation)))))
+                    calc_window.buffer.push(calc_format(
+                        eval("".join(reversed(evaluation)))))
                     calc_window.ui.labelExpression.setText(
                         view_output_format(calc_window.buffer[-1] + " ="))
                     calc_window.ui.labelEval.setText(
@@ -44,7 +45,8 @@ def equalize(calc_window):
 
                 try:
                     # разворот необходим, так как из стека мы вытаскиваем в обратном порядке
-                    calc_window.buffer.push(calc_format(eval("".join(reversed(evaluation)))))
+                    calc_window.buffer.push(calc_format(
+                        eval("".join(reversed(evaluation)))))
                     calc_window.ui.labelExpression.setText(
                         view_output_format(calc_window.buffer[-1] + " ="))
                     calc_window.ui.labelEval.setText(
@@ -57,7 +59,8 @@ def equalize(calc_window):
         else:
             # если нажали с маленьким стеком (т.е. просто так), то просто форматируем число
             calc_window.buffer[-1] = calc_format(float(calc_window.buffer[-1]))
-            calc_window.ui.labelEval.setText(view_output_format(calc_window.buffer[-1]))
+            calc_window.ui.labelEval.setText(
+                view_output_format(calc_window.buffer[-1]))
             calc_window.ui.labelExpression.setText(
                 view_output_format(calc_window.buffer[-1]) + " =")
 
@@ -74,7 +77,8 @@ def change_number(calc_window, number: int):
 
     if (is_float(calc_window.buffer[-1])):
         if (calc_window.buffer[-1] != "0"):  # лишние цифры к нулю не добавляем
-            calc_window.buffer[-1] = calc_window.buffer[-1] + calc_format(number)
+            calc_window.buffer[-1] = calc_window.buffer[-1] + \
+                calc_format(number)
 
         else:  # ноль мы просто меняем
             calc_window.buffer[-1] = calc_format(number)
@@ -82,7 +86,8 @@ def change_number(calc_window, number: int):
     else:
         calc_window.buffer.push(calc_format(number))
 
-    calc_window.ui.labelEval.setText(view_output_format(calc_window.buffer[-1]))
+    calc_window.ui.labelEval.setText(
+        view_output_format(calc_window.buffer[-1]))
 
 
 def make_dot(calc_window):
@@ -93,6 +98,8 @@ def make_dot(calc_window):
     # print(calc_window.buffer.stack_)
 
     if (is_float(calc_window.buffer[-1])):
-        if calc_window.buffer[-1].count(".") == 0:  # если точка уже есть, её ставить не надо
+        # если точка уже есть, её ставить не надо
+        if calc_window.buffer[-1].count(".") == 0:
             calc_window.buffer[-1] += "."
-            calc_window.ui.labelEval.setText(view_output_format(calc_window.buffer[-1]))
+            calc_window.ui.labelEval.setText(
+                view_output_format(calc_window.buffer[-1]))

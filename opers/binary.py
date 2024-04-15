@@ -22,7 +22,8 @@ def do_bin_oper(calc_window, oper: str):
 
                 try:
                     # разворот необходим, так как из стека мы вытаскиваем в обратном порядке
-                    calc_window.buffer.push(calc_format(eval("".join(reversed(evaluation)))))
+                    calc_window.buffer.push(calc_format(
+                        eval("".join(reversed(evaluation)))))
                     calc_window.ui.labelExpression.setText(
                         view_output_format(calc_window.buffer[-1] + oper))
                     calc_window.ui.labelEval.setText(
@@ -46,7 +47,8 @@ def do_bin_oper(calc_window, oper: str):
             number: str = calc_window.buffer[-1]
             calc_window.buffer.push(oper)
 
-            calc_window.ui.labelExpression.setText(view_output_format(number + oper))
+            calc_window.ui.labelExpression.setText(
+                view_output_format(number + oper))
 
     except OverflowError:
         calc_window.ui.labelEval.setText("Too large number")

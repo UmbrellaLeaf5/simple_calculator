@@ -63,4 +63,5 @@ def delete(calc_window):
         if calc_window.buffer[-1] == "":
             calc_window.buffer[-1] = "0"
 
-        calc_window.ui.labelEval.setText(view_output_format(calc_window.buffer[-1]))
+        calc_window.ui.labelEval.setText(
+            view_output_format(calc_window.buffer[-1]))

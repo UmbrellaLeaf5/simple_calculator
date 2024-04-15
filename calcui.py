@@ -20,7 +20,8 @@ class Ui_Window(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
 
-        self.labelExpression = QtWidgets.QLabel(parent=self.verticalLayoutWidget)
+        self.labelExpression = QtWidgets.QLabel(
+            parent=self.verticalLayoutWidget)
         self.labelExpression.setMinimumSize(QtCore.QSize(0, 25))
         font = QtGui.QFont()
         font.setPointSize(12)
@@ -91,52 +92,64 @@ class Ui_Window(object):
                                          pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_div, 1, 3, 1, 1)
 
-        self.pushButton_1 = CalcButton("pushButton_1", parent=self.verticalLayoutWidget)
+        self.pushButton_1 = CalcButton(
+            "pushButton_1", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_1, 2, 0, 1, 1)
 
-        self.pushButton_2 = CalcButton("pushButton_2", parent=self.verticalLayoutWidget)
+        self.pushButton_2 = CalcButton(
+            "pushButton_2", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_2, 2, 1, 1, 1)
 
-        self.pushButton_3 = CalcButton("pushButton_3", parent=self.verticalLayoutWidget)
+        self.pushButton_3 = CalcButton(
+            "pushButton_3", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_3, 2, 2, 1, 1)
 
         self.pushButton_mul = CalcButton("pushButton_mul", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                          pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_mul, 2, 3, 1, 1)
 
-        self.pushButton_4 = CalcButton("pushButton_4", parent=self.verticalLayoutWidget)
+        self.pushButton_4 = CalcButton(
+            "pushButton_4", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_4, 3, 0, 1, 1)
 
-        self.pushButton_5 = CalcButton("pushButton_5", parent=self.verticalLayoutWidget)
+        self.pushButton_5 = CalcButton(
+            "pushButton_5", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_5, 3, 1, 1, 1)
 
-        self.pushButton_6 = CalcButton("pushButton_6", parent=self.verticalLayoutWidget)
+        self.pushButton_6 = CalcButton(
+            "pushButton_6", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_6, 3, 2, 1, 1)
 
         self.pushButton_minus = CalcButton("pushButton_minus", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                            pressed_color="rgb(40, 40, 40);",  parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_minus, 3, 3, 1, 1)
 
-        self.pushButton_7 = CalcButton("pushButton_7", parent=self.verticalLayoutWidget)
+        self.pushButton_7 = CalcButton(
+            "pushButton_7", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_7, 4, 0, 1, 1)
 
-        self.pushButton_8 = CalcButton("pushButton_8", parent=self.verticalLayoutWidget)
+        self.pushButton_8 = CalcButton(
+            "pushButton_8", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_8, 4, 1, 1, 1)
 
-        self.pushButton_9 = CalcButton("pushButton_9", parent=self.verticalLayoutWidget)
+        self.pushButton_9 = CalcButton(
+            "pushButton_9", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_9, 4, 2, 1, 1)
 
         self.pushButton_plus = CalcButton("pushButton_plus", back_color="rgb(40, 40, 40);", hover_color="rgb(59, 59, 59);",
                                           pressed_color="rgb(40, 40, 40);", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_plus, 4, 3, 1, 1)
 
-        self.pushButton_neg = CalcButton("pushButton_neg", parent=self.verticalLayoutWidget)
+        self.pushButton_neg = CalcButton(
+            "pushButton_neg", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_neg, 5, 0, 1, 1)
 
-        self.pushButton_0 = CalcButton("pushButton_0", parent=self.verticalLayoutWidget)
+        self.pushButton_0 = CalcButton(
+            "pushButton_0", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_0, 5, 1, 1, 1)
 
-        self.pushButton_dot = CalcButton("pushButton_dot", parent=self.verticalLayoutWidget)
+        self.pushButton_dot = CalcButton(
+            "pushButton_dot", parent=self.verticalLayoutWidget)
         self.gridLayout.addWidget(self.pushButton_dot, 5, 2, 1, 1)
 
         self.pushButton_eq = CalcButton("pushButton_eq", back_color="rgb(97, 186, 97);", hover_color="rgb(90, 170, 90);",
