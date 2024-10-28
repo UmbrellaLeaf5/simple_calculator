@@ -10,7 +10,7 @@ class Stack:
     def __init__(self, items_list: list[str] = [""]):
         self.stack_ = items_list
 
-    def is_empty(self) -> bool:
+    def IsEmpty(self) -> bool:
         """
         Returns:
             bool: пуст ли стек
@@ -18,7 +18,7 @@ class Stack:
 
         return len(self.stack_) == 0
 
-    def push(self, item: str):
+    def Push(self, item: str):
         """
         Does: 
             добавляет элемент в стек
@@ -29,7 +29,7 @@ class Stack:
 
         self.stack_.append(item)
 
-    def pop(self) -> str:
+    def Pop(self) -> str:
         """
         Means: 
             функция, которая удаляет последний элемент из стека
@@ -41,12 +41,12 @@ class Stack:
             str: удаляемый элемент
         """
 
-        if self.is_empty():
+        if self.IsEmpty():
             raise ValueError("Stack is empty")
 
         return self.stack_.pop()
 
-    def size(self) -> int:
+    def Size(self) -> int:
         """
         Returns:
             int: размер стека
@@ -54,7 +54,7 @@ class Stack:
 
         return len(self.stack_)
 
-    def clear(self):
+    def Clear(self):
         """
         Does: 
             удаляет все элементы из стека
@@ -62,7 +62,7 @@ class Stack:
 
         self.stack_ = []
 
-    def math_reset(self):
+    def MathReset(self):
         """
         Does: 
             удаляет все элементы из стека, оставляя "0"
@@ -109,7 +109,7 @@ class Stack:
             raise IndexError("Invalid index")
 
 
-def is_float(string: str) -> bool:
+def IsFloat(string: str) -> bool:
     try:
         float(string)
         return True
@@ -118,7 +118,7 @@ def is_float(string: str) -> bool:
         return False
 
 
-def remove_trailing_zeros(number: str) -> str:
+def RemoveTrailingZeros(number: str) -> str:
     """
     Means:
         функция, которая удаляет незначащие нули из числа, представленного строкой
@@ -136,7 +136,7 @@ def remove_trailing_zeros(number: str) -> str:
     return number
 
 
-def sci_format(expression: str) -> str:
+def ScientificFormat(expression: str) -> str:
     """
     Means:
         функция, которая переводит числа внутри выражения в научный стиль
@@ -149,7 +149,7 @@ def sci_format(expression: str) -> str:
         str: отформатированное математическое выражение
     """
 
-    def convert(match: str) -> str:
+    def Convert(match: str) -> str:
         """
         Means:
             функция, которая 1 число в научный стиль
@@ -170,12 +170,12 @@ def sci_format(expression: str) -> str:
     # я без понятия, как работают регулярные выражения, но они работают :)
     pattern = r"\b[+-]?\d+\.\d+(?:[eE][+-]?\d+)?\b|\b\d+(?:[eE][+-]?\d+)?\b"
     converted_expression = sub(
-        pattern, lambda match: convert(match.group()), expression)
+        pattern, lambda match: Convert(match.group()), expression)
 
     return converted_expression
 
 
-def view_output_format(text: str) -> str:
+def ViewOutputFormat(text: str) -> str:
     """
     Means:
         функция, которая приводит строку в формат для пользователя
@@ -187,7 +187,7 @@ def view_output_format(text: str) -> str:
         str: отформатированная строка
     """
 
-    res: str = sci_format(text)
+    res: str = ScientificFormat(text)
     res = res.replace('*', '×')
     res = res.replace("/", "÷")
     res = res.replace(".", ",")
@@ -195,7 +195,7 @@ def view_output_format(text: str) -> str:
     return res
 
 
-def calc_format(number: float) -> str:
+def CalcFormat(number: float) -> str:
     """
     Means:
         функция, которая приводит число в формат для представления в стеке
@@ -207,4 +207,4 @@ def calc_format(number: float) -> str:
         str: отформатированная строка
     """
 
-    return remove_trailing_zeros(str(f"{number:.10f}"))
+    return RemoveTrailingZeros(str(f"{number:.10f}"))

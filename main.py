@@ -22,7 +22,7 @@ class Window(QtWidgets.QMainWindow):
 
         # создаём стек, который будем использовать для подсчета
         self.buffer = Stack()
-        self.buffer.math_reset()
+        self.buffer.MathReset()
 
         # список кнопок, обозначающих цифры
         digits_buttons = [self.ui.pushButton_0, self.ui.pushButton_1, self.ui.pushButton_2,
@@ -32,7 +32,7 @@ class Window(QtWidgets.QMainWindow):
 
         # коннект кнопок с цифрами к соотв. функциям
         for i in range(10):
-            self.connect_digit_button(digits_buttons[i], i)
+            self.ConnectDigitButton(digits_buttons[i], i)
 
         # список кнопок, обозначающих бинарные операции
         bin_opered_buttons = [self.ui.pushButton_div, self.ui.pushButton_minus,
@@ -40,34 +40,34 @@ class Window(QtWidgets.QMainWindow):
 
         # коннект кнопок, отвечающих за бинарные операции к соотв. функциям
         for i in range(5):
-            self.connect_bin_oper_button(
+            self.ConnectBinaryOperationButton(
                 bin_opered_buttons[i], [" / ", " - ", " * ", " % ", " + "][i])
 
         # коннект кнопок, отвечающих за унарные операции к соотв. функциям
         self.ui.pushButton_neg.clicked.connect(
-            lambda: opers.unary.turn_to_neg(self))
+            lambda: opers.unary.TurnToNegative(self))
         self.ui.pushButton_rev.clicked.connect(
-            lambda: opers.unary.turn_to_rev(self))
+            lambda: opers.unary.TurnToReverse(self))
         self.ui.pushButton_sqr.clicked.connect(
-            lambda: opers.unary.take_square(self))
+            lambda: opers.unary.TakeSquare(self))
         self.ui.pushButton_sqrt.clicked.connect(
-            lambda: opers.unary.take_square_root(self))
+            lambda: opers.unary.TakeSquareRoot(self))
 
         # коннект кнопок, отвечающих за чистку к соотв. функциям
         self.ui.pushButton_C.clicked.connect(
-            lambda: opers.clearing.clear(self))
+            lambda: opers.clearing.Clear(self))
         self.ui.pushButton_CE.clicked.connect(
-            lambda: opers.clearing.clear_eval(self))
+            lambda: opers.clearing.ClearEvaluation(self))
         self.ui.pushButton_del.clicked.connect(
-            lambda: opers.clearing.delete(self))
+            lambda: opers.clearing.Delete(self))
 
         # коннект остальных кнопок к соотв. функциям
         self.ui.pushButton_eq.clicked.connect(
-            lambda: opers.other.equalize(self))
+            lambda: opers.other.Equalize(self))
         self.ui.pushButton_dot.clicked.connect(
-            lambda: opers.other.make_dot(self))
+            lambda: opers.other.MakeDot(self))
 
-    def connect_digit_button(self, button: QtWidgets.QPushButton, number: int):
+    def ConnectDigitButton(self, button: QtWidgets.QPushButton, number: int):
         """
         Does:
             коннектит кнопку, обозначающую цифру, к соотв. функции
@@ -77,9 +77,9 @@ class Window(QtWidgets.QMainWindow):
             number (int): цифра
         """
 
-        button.clicked.connect(lambda: opers.other.change_number(self, number))
+        button.clicked.connect(lambda: opers.other.ChangeNumber(self, number))
 
-    def connect_bin_oper_button(self, button: QtWidgets.QPushButton, oper: str):
+    def ConnectBinaryOperationButton(self, button: QtWidgets.QPushButton, oper: str):
         """
         Does:
             коннектит кнопку, обозначающую бинарную операцию, к соотв. функции
@@ -89,7 +89,7 @@ class Window(QtWidgets.QMainWindow):
             oper (str): операция
         """
 
-        button.clicked.connect(lambda: opers.binary.do_bin_oper(self, oper))
+        button.clicked.connect(lambda: opers.binary.DoBinaryOperation(self, oper))
 
 
 if __name__ == "__main__":
