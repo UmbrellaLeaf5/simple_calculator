@@ -1,4 +1,4 @@
-from PyQt6 import QtWidgets
+from PyQt6 import QtWidgets, QtGui
 
 from calcui import Ui_Window
 from utils import *
@@ -93,8 +93,14 @@ class Window(QtWidgets.QMainWindow):
 
 
 if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+
+    # https://www.flaticon.com/free-icon/calculator_2374370?term=calculator&page=1&position=8&origin=search&related_id=2374370
+    icon = QtGui.QIcon('icon.png')
+    app.setWindowIcon(icon)
+
     window = Window()
     window.show()
 
-    app.exec()
+    sys.exit(app.exec())
