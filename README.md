@@ -48,13 +48,13 @@
     Перед тем как начать, вам необходимо клонировать репозиторий с исходным кодом проекта.
 
     ```bash
-    git clone https://github.com/UmbrellaLeaf5/template_python_usual.git
+    git clone https://github.com/UmbrellaLeaf5/simple_calculator.git
     ```
 
     Перейдите в директорию, куда был клонирован репозиторий:
 
     ```bash
-    cd template_python_usual
+    cd simple_calculator
     ```
 
 1.  **Создание виртуального окружения:**
