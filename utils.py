@@ -2,209 +2,213 @@ from re import sub
 
 
 class Stack:
+  """
+  Means:
+      класс, представляющий собой стек строк (реализован на листе)
+  """
+
+  def __init__(self, items_list: list[str] | None = None):
+    if items_list is None:
+      items_list = [""]
+
+    self.stack_ = items_list
+
+  def IsEmpty(self) -> bool:
+    """
+    Returns:
+        bool: пуст ли стек
+    """
+
+    return len(self.stack_) == 0
+
+  def Push(self, item: str):
+    """
+    Does:
+        добавляет элемент в стек
+
+    Args:
+        item (str): добавляемый элемент
+    """
+
+    self.stack_.append(item)
+
+  def Pop(self) -> str:
     """
     Means:
-        класс, представляющий собой стек строк (реализован на листе)
+        функция, которая удаляет последний элемент из стека
+
+    RAISES:
+        ValueError: в том случае, если стек пуст
+
+    Returns:
+        str: удаляемый элемент
     """
 
-    def __init__(self, items_list: list[str] = [""]):
-        self.stack_ = items_list
+    if self.IsEmpty():
+      raise ValueError("Stack is empty")
 
-    def IsEmpty(self) -> bool:
-        """
-        Returns:
-            bool: пуст ли стек
-        """
+    return self.stack_.pop()
 
-        return len(self.stack_) == 0
+  def Size(self) -> int:
+    """
+    Returns:
+        int: размер стека
+    """
 
-    def Push(self, item: str):
-        """
-        Does: 
-            добавляет элемент в стек
+    return len(self.stack_)
 
-        Args:
-            item (str): добавляемый элемент
-        """
+  def Clear(self):
+    """
+    Does:
+        удаляет все элементы из стека
+    """
 
-        self.stack_.append(item)
+    self.stack_ = []
 
-    def Pop(self) -> str:
-        """
-        Means: 
-            функция, которая удаляет последний элемент из стека
+  def MathReset(self):
+    """
+    Does:
+        удаляет все элементы из стека, оставляя "0"
+    """
 
-        RAISES:
-            ValueError: в том случае, если стек пуст
+    self.stack_ = ["0"]
 
-        Returns:
-            str: удаляемый элемент
-        """
+  def __setitem__(self, index: int, item: str):
+    """
+    Does:
+        меняет элемент по определенному индексу
+        (обращаться можно только к последнему)
 
-        if self.IsEmpty():
-            raise ValueError("Stack is empty")
+    Args:
+        index (int): индекс
+        item (str): изменяемый элемент
 
-        return self.stack_.pop()
+    RAISES:
+        IndexError: в том случае, если индекс не последний
+    """
 
-    def Size(self) -> int:
-        """
-        Returns:
-            int: размер стека
-        """
+    if index == len(self.stack_) - 1 or index == -1:
+      self.stack_[index] = item
 
-        return len(self.stack_)
+    else:
+      raise IndexError("Invalid index")
 
-    def Clear(self):
-        """
-        Does: 
-            удаляет все элементы из стека
-        """
+  def __getitem__(self, index: int) -> str:
+    """
+    Args:
+        index (int): индекс (обращаться можно только к последнему)
 
-        self.stack_ = []
+    RAISES:
+        IndexError: в том случае, если индекс не последний
 
-    def MathReset(self):
-        """
-        Does: 
-            удаляет все элементы из стека, оставляя "0"
-        """
+    Returns:
+        str: элемент по индексу
+    """
 
-        self.stack_ = ["0"]
+    if index == len(self.stack_) - 1 or index == -1:
+      return self.stack_[index]
 
-    def __setitem__(self, index: int, item: str):
-        """
-        Does:
-            меняет элемент по определенному индексу
-            (обращаться можно только к последнему)
-
-        Args:
-            index (int): индекс
-            item (str): изменяемый элемент
-
-        RAISES:
-            IndexError: в том случае, если индекс не последний
-        """
-
-        if index == len(self.stack_) - 1 or index == -1:
-            self.stack_[index] = item
-
-        else:
-            raise IndexError("Invalid index")
-
-    def __getitem__(self, index: int) -> str:
-        """
-        Args:
-            index (int): индекс (обращаться можно только к последнему)
-
-        RAISES:
-            IndexError: в том случае, если индекс не последний
-
-        Returns:
-            str: элемент по индексу
-        """
-
-        if index == len(self.stack_) - 1 or index == -1:
-            return self.stack_[index]
-
-        else:
-            raise IndexError("Invalid index")
+    else:
+      raise IndexError("Invalid index")
 
 
 def IsFloat(string: str) -> bool:
-    try:
-        float(string)
-        return True
+  try:
+    float(string)
+    return True
 
-    except ValueError:
-        return False
+  except ValueError:
+    return False
 
 
 def RemoveTrailingZeros(number: str) -> str:
-    """
-    Means:
-        функция, которая удаляет незначащие нули из числа, представленного строкой
+  """
+  Means:
+      функция, которая удаляет незначащие нули из числа, представленного строкой
 
-    Args:
-        number (str): изменяемое число
+  Args:
+      number (str): изменяемое число
 
-    Returns:
-        str: обрезанное число
-    """
+  Returns:
+      str: обрезанное число
+  """
 
-    if "." in number:
-        number = number.rstrip("0").rstrip(".")
+  if "." in number:
+    number = number.rstrip("0").rstrip(".")
 
-    return number
+  return number
 
 
 def ScientificFormat(expression: str) -> str:
+  """
+  Means:
+      функция, которая переводит числа внутри выражения в научный стиль
+      (меняет на экспоненциальную запись, если числа длиннее 16 символов)
+
+  Args:
+      expression (str): математическое выражение
+
+  Returns:
+      str: отформатированное математическое выражение
+  """
+
+  def Convert(match: str) -> str:
     """
     Means:
-        функция, которая переводит числа внутри выражения в научный стиль
-        (меняет на экспоненциальную запись, если числа длиннее 16 символов)
+        функция, которая 1 число в научный стиль
+        (меняет на экспоненциальную запись, если число длиннее 16 символов)
 
     Args:
-        expression (str): математическое выражение
+        match (str): изменяемое число
 
     Returns:
-        str: отформатированное математическое выражение
+        str: отформатированное число
     """
 
-    def Convert(match: str) -> str:
-        """
-        Means:
-            функция, которая 1 число в научный стиль
-            (меняет на экспоненциальную запись, если число длиннее 16 символов)
+    max_beauty_chars_amount: int = 15  # большее кол-во символов плохо помещается
 
-        Args:
-            match (str): изменяемое число
+    if len(match) > max_beauty_chars_amount:
+      return f"{float(match):e}"
 
-        Returns:
-            str: отформатированное число
-        """
+    return match
 
-        if len(match) > 15:  # большее кол-во символов плохо помещается
-            return "{:e}".format(float(match))
+  # я без понятия, как работают регулярные выражения, но они работают :)
+  pattern = r"\b[+-]?\d+\.\d+(?:[eE][+-]?\d+)?\b|\b\d+(?:[eE][+-]?\d+)?\b"
+  converted_expression = sub(pattern, lambda match: Convert(match.group()), expression)
 
-        return match
-
-    # я без понятия, как работают регулярные выражения, но они работают :)
-    pattern = r"\b[+-]?\d+\.\d+(?:[eE][+-]?\d+)?\b|\b\d+(?:[eE][+-]?\d+)?\b"
-    converted_expression = sub(
-        pattern, lambda match: Convert(match.group()), expression)
-
-    return converted_expression
+  return converted_expression
 
 
 def ViewOutputFormat(text: str) -> str:
-    """
-    Means:
-        функция, которая приводит строку в формат для пользователя
+  """
+  Means:
+      функция, которая приводит строку в формат для пользователя
 
-    Args:
-        text (str): строка
+  Args:
+      text (str): строка
 
-    Returns:
-        str: отформатированная строка
-    """
+  Returns:
+      str: отформатированная строка
+  """
 
-    res: str = ScientificFormat(text)
-    res = res.replace('*', '×')
-    res = res.replace("/", "÷")
-    res = res.replace(".", ",")
+  res: str = ScientificFormat(text)
+  res = res.replace("*", "×")
+  res = res.replace("/", "÷")
+  res = res.replace(".", ",")
 
-    return res
+  return res
 
 
 def CalcFormat(number: float) -> str:
-    """
-    Means:
-        функция, которая приводит число в формат для представления в стеке
+  """
+  Means:
+      функция, которая приводит число в формат для представления в стеке
 
-    Args:
-        number (float): число
+  Args:
+      number (float): число
 
-    Returns:
-        str: отформатированная строка
-    """
+  Returns:
+      str: отформатированная строка
+  """
 
-    return RemoveTrailingZeros(str(f"{number:.10f}"))
+  return RemoveTrailingZeros(str(f"{number:.10f}"))

@@ -1,0 +1,26 @@
+indent-width = 2
+line-length = 90
+
+[lint]
+select = ["E", "F", "B", "UP", "RUF", "I"]
+
+extend-select = ["PD", "PL"]
+
+ignore = [
+  "RUF001",
+  "RUF002",
+  "RUF003",
+  "F405",
+  "F403",
+  "PLR0912",
+  "PLR0915",
+  "PLR0913",
+  "PD901",
+  "PLR0911",
+  "B008",
+  "PLW2901",
+  "RUF012",
+]
+
+[lint.isort]
+lines-after-imports = 2
