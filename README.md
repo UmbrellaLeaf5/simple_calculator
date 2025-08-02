@@ -1,13 +1,13 @@
-# Simple calculator
+# Simple Calculator
 
 ## About
 
 Этот проект представляет собой калькулятор с графическим интерфейсом, разработанный на Python с использованием библиотеки PyQt6. Приложение имитирует стиль стандартного калькулятора Windows, но с урезанным функционалом для сохранения простоты и удобства использования.
 
 <div align="center">
-  <img src="./.extra/pictures/app_screen_1.png" height="250">
+  <img src="./.extra/pictures/app_screen_1.png" width="400">
 
-  <img src="./.extra/pictures/app_screen_2.png" height="250">
+  <img src="./.extra/pictures/app_screen_2.png" width="400">
 </div>
 
 ### Особенности приложения
