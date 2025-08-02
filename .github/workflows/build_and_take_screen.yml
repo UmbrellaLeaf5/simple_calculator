@@ -1,11 +1,11 @@
-name: Build
+name: Build and Take Screenshot
 
 on:
   push:
     branches: main
 
 jobs:
-  build:
+  build_and_take_screen:
     runs-on: ubuntu-latest
     env:
       DISPLAY: ":99.0"
@@ -13,8 +13,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Install system dependencies for Qt
+      - name: Install system dependencies for Qt and screens
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -48,9 +50,6 @@ jobs:
             --make-pidfile --background \
             --exec /usr/bin/Xvfb -- :99 -screen 0 1920x1200x24 -ac +extension GLX
 
-      # - name: Run main
-      #   run: timeout 30s bash -c 'uv run main.py & sleep 30; kill $!' || true
-
       - name: Run application and take screenshot
         run: |
           uv run main.py &
@@ -65,15 +64,20 @@ jobs:
 
           kill $APP_PID || true
 
-          if [ -f screenshot.png ]; then
-            echo "::notice::Screenshot created successfully"
-          else
-            echo "::warning::Failed to create screenshot"
-          fi
+      - name: Commit screenshot to output branch
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
 
-      - name: Upload screenshot
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: qt-screenshot
-          path: screenshot.png
+          git fetch origin output
+          git checkout output
+          git pull origin output
+
+          mkdir -p ./screenshots/
+          cp screenshot.png ./screenshots/ || true
+
+          git add ./screenshots/
+
+          git commit -m "add screenshot from workflow run (date: $(date +'%d.%m.%Y %H:%M:%S'))"
+
+          git push origin output -f
