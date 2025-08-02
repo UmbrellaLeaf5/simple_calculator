@@ -1,4 +1,4 @@
-from utils import *
+from utils.utils import CalcFormat, IsFloat, ViewOutputFormat
 
 
 # тут все функции работают однообразно, но в одну их не засунешь: разные ОДЗ

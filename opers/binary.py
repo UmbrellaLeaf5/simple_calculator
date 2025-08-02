@@ -1,4 +1,4 @@
-from utils import *
+from utils.utils import CalcFormat, IsFloat, ViewOutputFormat
 
 
 def DoBinaryOperation(calc_window, oper: str):

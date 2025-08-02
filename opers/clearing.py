@@ -1,4 +1,4 @@
-from utils import *
+from utils.utils import IsFloat, ViewOutputFormat
 
 
 def Clear(calc_window):

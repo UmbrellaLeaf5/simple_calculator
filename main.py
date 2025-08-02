@@ -4,8 +4,8 @@ import opers.binary
 import opers.clearing
 import opers.other
 import opers.unary
-from calcui import Ui_Window
-from utils import *
+from ui.calcui import Ui_Window
+from utils.utils import Stack
 
 
 class Window(QtWidgets.QMainWindow):
@@ -102,7 +102,7 @@ if __name__ == "__main__":
   app = QtWidgets.QApplication(sys.argv)
 
   # https://www.flaticon.com/free-icon/calculator_2374370?term=calculator&page=1&position=8&origin=search&related_id=2374370
-  icon = QtGui.QIcon("icon.png")
+  icon = QtGui.QIcon("./ui/pictures/icon.png")
   app.setWindowIcon(icon)
 
   window = Window()

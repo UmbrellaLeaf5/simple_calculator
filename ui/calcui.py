@@ -1,6 +1,6 @@
 from PyQt6 import QtCore, QtGui, QtWidgets
 
-from button import CalcButton
+from ui.button import CalcButton
 
 
 # сам редактировал, создав свой класс :)
