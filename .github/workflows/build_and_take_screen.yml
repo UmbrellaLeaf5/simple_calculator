@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install system dependencies for Qt and screens
+      - name: Install system packages for Qt and screenshots
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -74,7 +74,7 @@ jobs:
           git pull origin output
 
           mkdir -p ./screenshots/
-          cp screenshot.png ./screenshots/ || true
+          cp screenshot.png ./screenshots/
 
           git add ./screenshots/
 
